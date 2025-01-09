@@ -1,0 +1,17 @@
+<div class="container text-center mt-4">
+    <div class="pt-5">
+      <h2 class="text-primary">¡Entrenador, inicia tu aventura!</h2>
+      <button class="btn btn-warning text-dark" (click)="loginWithGoogle()">
+        <i class="bi bi-google me-2"></i> Inicia Sesión con Google
+      </button>
+      <p class="mt-3">
+        Accede para gestionar tus entrenadores, gimnasios y combates Pokémon.
+      </p>
+      <app-notification
+        *ngIf="errorMessage"
+        [alertClass]="'danger'"
+        [alertMessage]="errorMessage"
+      ></app-notification>
+    </div>
+  </div>
+  

@@ -1,0 +1,48 @@
+<div class="container mt-4" *ngIf="!isLoading; else loadingSpinner">
+    <h2>Gimnasios Pokémon</h2>
+    <table *ngIf="gyms.length > 0" class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Líder</th>
+                <th scope="col">Ubicación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let gym of gyms">
+                <td>{{ gym.name }}</td>
+                <td>{{ gym.type }}</td>
+                <td>{{ gym.leader }}</td>
+                <td>{{ gym.location }}</td>
+                <td>
+                    <div class="d-flex flex-row gap-2 align-items-center">
+                        <a [routerLink]="['/gimnasios/editar', gym.id]" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-pencil"></i> 
+                            <span class="d-none d-md-inline-flex ps-2">Editar</span>
+                        </a>
+                        <button (click)="deleteGym(gym.id!)" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> 
+                            <span class="d-none d-md-inline-flex ps-2">Eliminar</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="gyms.length === 0" class="alert alert-info" role="alert">
+        No hay gimnasios registrados. Añade uno nuevo.
+    </div>
+    <div class="d-grid gap-2 d-md-block mt-3">
+        <a [routerLink]="['/gimnasios/anadir']" class="btn btn-primary" href="#" role="button">
+            <i class="bi bi-plus-lg"></i> Añadir gimnasio
+        </a>
+    </div>
+</div>
+
+<ng-template #loadingSpinner>
+    <div class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+</ng-template>
